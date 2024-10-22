@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "make an app for remember daily jobs",
   "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": "https://github.com/mohsen12999/remember-app",
   "author": "mohsen shabanian",
   "license": "GPL-3",
