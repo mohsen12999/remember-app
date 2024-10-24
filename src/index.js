@@ -1,5 +1,23 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain  } = require('electron');
 const path = require('node:path');
+const fs = require('fs')
+
+const FILE_NAME = 'data.json'
+const DEFAULT_DATA = {
+    tasks: ["task1", "task2", "task3", "task4"],
+    data:[]
+}
+
+const handleSaveData = (event, tasks) => {
+  console.log("save data in index js", tasks);
+  
+  // fs.writeFile(FILE_NAME, data, (err) => {
+  //     if (err) {
+  //         console.error(err)
+  //         return
+  //     }
+  // })
+}
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -12,6 +30,8 @@ const createWindow = () => {
     width: 800,
     height: 600,
     webPreferences: {
+      // contextIsolation: true,
+      // nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js'),
     },
   });
@@ -20,6 +40,7 @@ const createWindow = () => {
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
   // Open the DevTools.
+  // if (process.env.NODE_ENV != 'development')
   mainWindow.webContents.openDevTools();
 };
 
@@ -27,6 +48,8 @@ const createWindow = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
+  ipcMain.on('save-data', handleSaveData)
+
   createWindow();
 
   // On OS X it's common to re-create a window in the app when the
