@@ -4,8 +4,8 @@ const fs = require("fs");
 
 const FILE_NAME = "data.json";
 const DEFAULT_DATA = {
-  tasks: ["task1", "task2", "task3", "task4"],
-  data: {},
+  "tasks": ["task1", "task2", "task3", "task4"],
+  "data": {},
 };
 
 const loadData = () => {
@@ -59,7 +59,10 @@ const createWindow = () => {
   // if (process.env.NODE_ENV != 'development')
   mainWindow.webContents.openDevTools();
 
-  mainWindow.webContents.send("load-data", loadData());
+  // const dataFromFile = loadData();
+  // console.log({ dataFromFile });
+
+  mainWindow.webContents.send("load-data", loadData() );
 };
 
 // This method will be called when Electron has finished
