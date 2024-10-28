@@ -12,21 +12,15 @@ const loadData = () => {
   const currentDate = new Date().toISOString().split("T")[0]; // "2024-12-10"
   const default_data = { ...DEFAULT_DATA, currentDate };
 
-  fs.readFile(FILE_NAME, "utf-8", (err, file_data) => {
-    if (err) {
-      console.log("error in reading file", err);
-      return default_data;
-    }
-    try {
-      const data = JSON.parse(file_data);
-      return { ...data, currentDate };
-    } catch (error) {
-      console.log("error in parsing file's data", error);
-      return default_data;
-    }
-  });
+  try {
+    const file_data = fs.readFileSync(FILE_NAME, "utf-8");
+    const data = JSON.parse(file_data);
 
-  return data;
+    return { ...data, currentDate };
+  } catch (error) {
+    console.log("error in reading file", err);
+    return default_data;
+  }
 };
 
 const handleSaveData = (event, tasks) => {
@@ -51,8 +45,6 @@ const createWindow = () => {
     width: 800,
     height: 600,
     webPreferences: {
-      // contextIsolation: true,
-      // nodeIntegration: true,
       preload: path.join(__dirname, "preload.js"),
     },
   });
