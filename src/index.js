@@ -16,6 +16,8 @@ const loadData = () => {
     const file_data = fs.readFileSync(FILE_NAME, "utf-8");
     const data = JSON.parse(file_data);
 
+    DEFAULT_DATA = {...data};
+
     return { ...data, currentDate };
   } catch (error) {
     console.log("error in reading file", err);
