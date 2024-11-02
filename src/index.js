@@ -4,36 +4,56 @@ const fs = require("fs");
 
 const FILE_NAME = "data.json";
 const DEFAULT_DATA = {
-  "tasks": ["task1", "task2", "task3", "task4"],
-  "data": {},
+  tasks: ["task1", "task2", "task3", "task4"],
+  data: {},
 };
+const currentDate = new Date().toISOString().split("T")[0]; // "2024-12-10"
 
+// load data from file
 const loadData = () => {
-  const currentDate = new Date().toISOString().split("T")[0]; // "2024-12-10"
   const default_data = { ...DEFAULT_DATA, currentDate };
 
   try {
     const file_data = fs.readFileSync(FILE_NAME, "utf-8");
     const data = JSON.parse(file_data);
 
-    DEFAULT_DATA = {...data};
+    DEFAULT_DATA.tasks = { ...data.tasks };
+    DEFAULT_DATA.data = { ...data.data };
 
     return { ...data, currentDate };
   } catch (error) {
-    console.log("error in reading file", error);
+    console.error("error in reading file", error);
     return default_data;
   }
 };
 
-const handleSaveData = (event, tasks) => {
-  console.log("save data in index js", tasks);
+// save data to file
+const handleSaveData = (event, data) => {
+  const file_data = {};
+  file_data.tasks = data[0];
+  file_data.data = { ...DEFAULT_DATA.data };
 
-  // fs.writeFile(FILE_NAME, data, (err) => {
-  //     if (err) {
-  //         console.error(err)
-  //         return
-  //     }
-  // })
+  // don't save if there is no data
+  if(data[1].length > 0){
+    file_data.data[currentDate] = data[1];
+  }
+
+  file_json_data = JSON.stringify(file_data);
+
+  console.log("save data in index js", {
+    DEFAULT_DATA,
+    currentDate,
+    data,
+    file_data,
+    file_json_data,
+  });
+
+  try {
+    fs.writeFileSync(FILE_NAME, file_json_data, "utf-8");
+    console.log("file saved");
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -64,7 +84,7 @@ const createWindow = () => {
   // const dataFromFile = loadData();
   // console.log({ dataFromFile });
 
-  mainWindow.webContents.send("load-data", loadData() );
+  mainWindow.webContents.send("load-data", loadData());
 };
 
 // This method will be called when Electron has finished
