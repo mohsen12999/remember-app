@@ -20,7 +20,7 @@ const loadData = () => {
 
     return { ...data, currentDate };
   } catch (error) {
-    console.log("error in reading file", err);
+    console.log("error in reading file", error);
     return default_data;
   }
 };
