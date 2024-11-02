@@ -4,8 +4,18 @@
 
 ## TODO
 
-- [ ] write file to disk.
-- [ ] read and show data in page.
+- [x] read and show all tasks in page.
+- [x] write file to disk.
+- [ ] show done tasks.
+- [ ] add task to list.
+- [ ] remove tasks.
+- [ ] deactivate save button when nothing change.
+
+## feature
+
+- [ ] show data visually.
+- [ ] show day strick.
+- [ ] add notification
 
 ## command
 
