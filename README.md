@@ -6,9 +6,9 @@
 
 - [x] read and show all tasks in page.
 - [x] write file to disk.
+- [x] add task to list.
+- [x] remove tasks.
 - [ ] show done tasks.
-- [ ] add task to list.
-- [ ] remove tasks.
 - [ ] deactivate save button when nothing change.
 - [ ] reload button to read file again and show it.
 - [ ] react to save button.

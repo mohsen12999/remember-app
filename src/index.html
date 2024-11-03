@@ -6,9 +6,12 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <h1>💖 Task lists</h1>
-    <p>today is <span id="today"></span></p>
-    <p id="info"></p>
+    <h1 id="title">💖 Task lists</h1>
+    <p id="today_info">today is <span id="today"></span></p>
+    <p id="add_task_p">
+      <input type="text" name="new_task" id="new_task_input">
+      <button id="add_task_btn">add this task</button>
+    </p>
     <ul id="task_list"></ul>
     <button id="save_btn">save</button>
     <script src="./renderer.js"></script>

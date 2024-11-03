@@ -1,16 +1,23 @@
 window.electronAPI.loadData((event, data) => {
   console.log("Received data from main:", data); // Handle received data
+
   const all_tasks = data.tasks;
   const tasks_ul = document.getElementById("task_list");
+
   all_tasks.forEach((a_task) => {
-    const li_element = document.createElement("li");
-    li_element.innerHTML = `<label><input type="checkbox" />${a_task}</label><span class="remove_task" onclick="remove_task(this)">x</span>`; //a_task
+    const li_element = make_new_li(a_task);
     tasks_ul.append(li_element);
   });
   
   const today_span = document.getElementById("today");
   today_span.innerText = data.currentDate;
 });
+
+function make_new_li(task_name) {
+  const li_element = document.createElement("li");
+  li_element.innerHTML = `<label><input type="checkbox" />${task_name}</label><span class="remove_task" onclick="remove_task(this)">x</span>`;
+  return li_element;
+}
 
 const save_btn = document.getElementById("save_btn");
 
@@ -35,3 +42,18 @@ function remove_task(remove_task_span) {
     remove_task_span.parentElement.remove();
   }
 }
+
+const add_task_btn = document.getElementById("add_task_btn");
+
+add_task_btn.addEventListener("click", () => {
+  const new_task_ele =  document.getElementById("new_task_input");
+  const new_task = new_task_ele.value.trim();
+
+  if(new_task != ""){
+    const tasks_ul = document.getElementById("task_list");
+    const li_element = make_new_li(new_task);
+    tasks_ul.append(li_element);
+
+    new_task_ele.value = "";
+  }
+})
