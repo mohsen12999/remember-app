@@ -8,10 +8,10 @@
 - [x] write file to disk.
 - [x] add task to list.
 - [x] remove tasks.
-- [ ] show done tasks.
+- [x] show today done tasks.
 - [ ] deactivate save button when nothing change.
 - [ ] reload button to read file again and show it.
-- [ ] react to save button.
+- [ ] react to save button. show success or fail of action.
 
 ## feature
 

@@ -1,21 +1,27 @@
 window.electronAPI.loadData((event, data) => {
   console.log("Received data from main:", data); // Handle received data
 
+  const today_done_task = data.data[data.currentDate];
+
   const all_tasks = data.tasks;
   const tasks_ul = document.getElementById("task_list");
 
   all_tasks.forEach((a_task) => {
-    const li_element = make_new_li(a_task);
+    const active_task = today_done_task.includes(a_task);
+    
+    const li_element = make_new_li(a_task, active_task);
     tasks_ul.append(li_element);
   });
-  
+
   const today_span = document.getElementById("today");
   today_span.innerText = data.currentDate;
 });
 
-function make_new_li(task_name) {
+function make_new_li(task_name, checked = false) {
   const li_element = document.createElement("li");
-  li_element.innerHTML = `<label><input type="checkbox" />${task_name}</label><span class="remove_task" onclick="remove_task(this)">x</span>`;
+  li_element.innerHTML = `<label><input type="checkbox" ${
+    checked ? 'checked="checked"' : ""
+  } />${task_name}</label><span class="remove_task" onclick="remove_task(this)">x</span>`;
   return li_element;
 }
 
@@ -37,8 +43,8 @@ save_btn.addEventListener("click", () => {
 
 function remove_task(remove_task_span) {
   // console.log({remove_task_span});
-  
-  if(confirm("Are you sure to delete task?")){
+
+  if (confirm("Are you sure to delete task?")) {
     remove_task_span.parentElement.remove();
   }
 }
@@ -47,10 +53,10 @@ const add_task_btn = document.getElementById("add_task_btn");
 
 add_task_btn.addEventListener("click", add_new_task_function);
 
-const new_task_ele =  document.getElementById("new_task_input");
+const new_task_ele = document.getElementById("new_task_input");
 
-new_task_ele.addEventListener('keyup', function (e) {
-  if (e.key === 'Enter') {
+new_task_ele.addEventListener("keyup", function (e) {
+  if (e.key === "Enter") {
     add_new_task_function();
   }
 });
@@ -58,7 +64,7 @@ new_task_ele.addEventListener('keyup', function (e) {
 function add_new_task_function() {
   const new_task = new_task_ele.value.trim();
 
-  if(new_task != ""){
+  if (new_task != "") {
     const tasks_ul = document.getElementById("task_list");
     const li_element = make_new_li(new_task);
     tasks_ul.append(li_element);
