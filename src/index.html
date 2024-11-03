@@ -4,21 +4,12 @@
     <meta charset="UTF-8" />
     <title>ًRemember!</title>
     <link rel="stylesheet" href="index.css" />
-    <style>
-      label:hover{
-        background-color: lightgray;
-      }
-      label:has(>input[type="checkbox"]:checked){
-        text-decoration: line-through;
-        color: gray;
-      }
-    </style>
   </head>
   <body>
     <h1>💖 Task lists</h1>
     <p>today is <span id="today"></span></p>
     <p id="info"></p>
-    <ul id="task_list" style="list-style-type: none;"></ul>
+    <ul id="task_list"></ul>
     <button id="save_btn">save</button>
     <script src="./renderer.js"></script>
   </body>
