@@ -45,8 +45,17 @@ function remove_task(remove_task_span) {
 
 const add_task_btn = document.getElementById("add_task_btn");
 
-add_task_btn.addEventListener("click", () => {
-  const new_task_ele =  document.getElementById("new_task_input");
+add_task_btn.addEventListener("click", add_new_task_function);
+
+const new_task_ele =  document.getElementById("new_task_input");
+
+new_task_ele.addEventListener('keyup', function (e) {
+  if (e.key === 'Enter' || e.keyCode === 13) {
+    add_new_task_function();
+  }
+});
+
+function add_new_task_function(params) {
   const new_task = new_task_ele.value.trim();
 
   if(new_task != ""){
@@ -56,4 +65,4 @@ add_task_btn.addEventListener("click", () => {
 
     new_task_ele.value = "";
   }
-})
+}
