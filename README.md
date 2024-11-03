@@ -10,12 +10,16 @@
 - [ ] add task to list.
 - [ ] remove tasks.
 - [ ] deactivate save button when nothing change.
+- [ ] reload button to read file again and show it.
+- [ ] react to save button.
 
 ## feature
 
 - [ ] show data visually.
 - [ ] show day strick.
 - [ ] add notification
+- [ ] add icon for app.
+- [ ] minimize app to taskbar.
 
 ## command
 
