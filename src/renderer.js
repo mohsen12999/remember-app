@@ -50,12 +50,12 @@ add_task_btn.addEventListener("click", add_new_task_function);
 const new_task_ele =  document.getElementById("new_task_input");
 
 new_task_ele.addEventListener('keyup', function (e) {
-  if (e.key === 'Enter' || e.keyCode === 13) {
+  if (e.key === 'Enter') {
     add_new_task_function();
   }
 });
 
-function add_new_task_function(params) {
+function add_new_task_function() {
   const new_task = new_task_ele.value.trim();
 
   if(new_task != ""){
