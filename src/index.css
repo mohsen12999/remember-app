@@ -6,7 +6,7 @@ body {
   padding: 2rem;
 }
 
-h1#title, p#today_info, p#add_task_p {
+div.container {
   text-align: center;
 }
 
@@ -41,4 +41,16 @@ ul#task_list li span.remove_task:hover {
 ul#task_list label:has(>input[type="checkbox"]:checked){
   text-decoration: line-through;
   color: gray;
+}
+
+footer {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  bottom: 0px;
+}
+
+footer p {
+  color: gray;
+  text-align: center;
 }

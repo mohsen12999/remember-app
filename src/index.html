@@ -6,14 +6,23 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <h1 id="title">💖 Task lists</h1>
-    <p id="today_info">today is <span id="today"></span></p>
-    <p id="add_task_p">
-      <input type="text" name="new_task" id="new_task_input">
-      <button id="add_task_btn">add this task</button>
-    </p>
+    <main>
+      <div class="container">
+      <h1 id="title">💖 Task lists</h1>
+      <p id="today_info">today is <span id="today"></span></p>
+      <p id="add_task_p">
+        <input type="text" name="new_task" id="new_task_input">
+        <button id="add_task_btn">add this task</button>
+      </p>
+    </div>
+    
     <ul id="task_list"></ul>
     <button id="save_btn" disabled="disabled">save</button>
+    </main>
+    <footer>
+      <p>Remember App v1.0</p>
+    </footer>
+    
     <script src="./renderer.js"></script>
   </body>
 </html>
