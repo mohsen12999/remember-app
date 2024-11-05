@@ -9,12 +9,13 @@
 - [x] add task to list.
 - [x] remove tasks.
 - [x] show today done tasks.
-- [ ] deactivate save button when nothing change.
-- [ ] reload button to read file again and show it.
-- [ ] react to save button. show success or fail of action.
+- [x] deactivate save button when nothing change.
 
 ## feature
 
+- [ ] change order of tasks.
+- [ ] react to save button. show success or fail of action.
+- [ ] reload button to read file again and show it.
 - [ ] show data visually.
 - [ ] show day strick.
 - [ ] add notification
@@ -24,5 +25,3 @@
 ## command
 
 - Watch and reload your electron app when developing: `npx electronmon .`
-
-https://www.electronjs.org/docs/latest/tutorial/ipc

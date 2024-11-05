@@ -7,8 +7,8 @@ window.electronAPI.loadData((event, data) => {
   const tasks_ul = document.getElementById("task_list");
 
   all_tasks.forEach((a_task) => {
-    const active_task = today_done_task.includes(a_task);
-    
+    const active_task = today_done_task ? today_done_task.includes(a_task) : false;
+
     const li_element = make_new_li(a_task, active_task);
     tasks_ul.append(li_element);
   });
@@ -19,7 +19,7 @@ window.electronAPI.loadData((event, data) => {
 
 function make_new_li(task_name, checked = false) {
   const li_element = document.createElement("li");
-  li_element.innerHTML = `<label><input type="checkbox" ${
+  li_element.innerHTML = `<label><input type="checkbox" onclick="enable_save_btn()" ${
     checked ? 'checked="checked"' : ""
   } />${task_name}</label><span class="remove_task" onclick="remove_task(this)">x</span>`;
   return li_element;
@@ -28,6 +28,9 @@ function make_new_li(task_name, checked = false) {
 const save_btn = document.getElementById("save_btn");
 
 save_btn.addEventListener("click", () => {
+  // disable save button
+  save_btn.disabled = true;
+
   // find add checkboxes title
   const allTasksLabel = document.querySelectorAll("ul#task_list>li>label");
   const allTasks = Array.from(allTasksLabel, (e) => e.innerText);
@@ -71,4 +74,10 @@ function add_new_task_function() {
 
     new_task_ele.value = "";
   }
+
+  enable_save_btn()
+}
+
+function enable_save_btn() {
+  save_btn.disabled = false;
 }
