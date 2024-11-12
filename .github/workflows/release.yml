@@ -27,10 +27,11 @@ jobs:
           path: |
             out/make/*.zip
             out/make/*.nupkg
+            out/make/*.exe
+            out/make/*.msi
             out/make/*.snap
             out/make/*.AppImage
             out/make/*.deb
             out/make/*.rpm
             out/make/*.pacman
             out/make/bundle-size.json
-          if-no-files-found: error
