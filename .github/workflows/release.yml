@@ -25,12 +25,12 @@ jobs:
         uses: LabhanshAgrawal/upload-artifact@v3
         with:
           path: |
-            dist/*.zip
-            dist/*.nupkg
-            dist/*.snap
-            dist/*.AppImage
-            dist/*.deb
-            dist/*.rpm
-            dist/*.pacman
-            dist/bundle-size.json
+            out/make/*.zip
+            out/make/*.nupkg
+            out/make/*.snap
+            out/make/*.AppImage
+            out/make/*.deb
+            out/make/*.rpm
+            out/make/*.pacman
+            out/make/bundle-size.json
           if-no-files-found: error
