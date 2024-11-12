@@ -25,13 +25,13 @@ jobs:
         uses: LabhanshAgrawal/upload-artifact@v3
         with:
           path: |
-            out/make/*.zip
-            out/make/*.nupkg
-            out/make/*.exe
-            out/make/*.msi
-            out/make/*.snap
-            out/make/*.AppImage
-            out/make/*.deb
-            out/make/*.rpm
-            out/make/*.pacman
-            out/make/bundle-size.json
+            ${{ github.workspace }}/out/make/*.zip
+            ${{ github.workspace }}/out/make/*.nupkg
+            ${{ github.workspace }}/out/make/*.exe
+            ${{ github.workspace }}/out/make/*.msi
+            ${{ github.workspace }}/out/make/*.snap
+            ${{ github.workspace }}/out/make/*.AppImage
+            ${{ github.workspace }}/out/make/*.deb
+            ${{ github.workspace }}/out/make/*.rpm
+            ${{ github.workspace }}/out/make/*.pacman
+            ${{ github.workspace }}/out/make/bundle-size.json
