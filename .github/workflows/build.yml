@@ -34,10 +34,10 @@ jobs:
 
       - name: Make ready to upload
         run: |
-               cd dist
+               cd out/make
                zip -r dist.zip .
-               cd -
-               mv dist/dist.zip .
+               cd ../..
+               mv out/make/dist.zip .
         shell: bash
 
 
