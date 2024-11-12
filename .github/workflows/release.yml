@@ -1,4 +1,4 @@
-name: Release with old way
+name: Release
 on: push
 
 jobs:
@@ -21,17 +21,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run publish
+      - name: Debug
+        run: ls out/mak
       - name: Upload artifacts
         uses: LabhanshAgrawal/upload-artifact@v3
         with:
-          path: |
-            ${{ github.workspace }}/out/make/*.zip
-            ${{ github.workspace }}/out/make/*.nupkg
-            ${{ github.workspace }}/out/make/*.exe
-            ${{ github.workspace }}/out/make/*.msi
-            ${{ github.workspace }}/out/make/*.snap
-            ${{ github.workspace }}/out/make/*.AppImage
-            ${{ github.workspace }}/out/make/*.deb
-            ${{ github.workspace }}/out/make/*.rpm
-            ${{ github.workspace }}/out/make/*.pacman
-            ${{ github.workspace }}/out/make/bundle-size.json
+          path: ./out/make/
+            
