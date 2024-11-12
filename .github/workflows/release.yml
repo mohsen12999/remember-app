@@ -22,7 +22,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run publish
       - name: Debug
-        run: ls 
+        run: ls ./out
+      - name: Debug deeper
+        run: find .
       - name: Upload artifacts
         uses: LabhanshAgrawal/upload-artifact@v3
         with:
