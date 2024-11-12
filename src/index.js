@@ -1,4 +1,9 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
+
+// Auto updating from GitHub
+const { updateElectronApp } = require('update-electron-app');
+updateElectronApp(); // additional configuration options available
+
 const path = require("node:path");
 const fs = require("fs");
 
