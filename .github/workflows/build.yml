@@ -10,12 +10,12 @@ permissions: write-all
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
         node-version: [18.x]
+
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Check out Git repository
