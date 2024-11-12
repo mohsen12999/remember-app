@@ -1,39 +1,24 @@
 name: Build
 on: [push, pull_request]
 
+
 jobs:
-  build_on_linux:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@master
-      with:
-        node-version: 18
-    - name: install dependencies
-      run: npm install
-    - name: build
-      run: npm run make
+  release:
+    runs-on: ${{ matrix.os }}
 
-  build_on_mac:
-    runs-on: macos-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@master
-      with:
-        node-version: 18
-    - name: install dependencies
-      run: npm install
-    - name: build
-      run: npm run make
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
 
-  build_on_win:
-    runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@master
-      with:
-        node-version: 18
-    - name: install dependencies
-      run: npm install
-    - name: build
-      run: npm run make
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@master
+        with:
+          node-version: 18
+      - name: install dependencies
+        run: npm install
+      - name: build
+        run: npm run make
