@@ -61,7 +61,7 @@
             "repository": {
               "owner": "mohsen12999",
               "name": "remember_app",
-              "draft": false
+              "draft": true
             }
           }
         }
