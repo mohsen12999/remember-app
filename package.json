@@ -28,6 +28,45 @@
     "email": "mohsen1299@gmail.com"
   },
   "license": "GPL-3.0",
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "remember_app"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ],
+      "publishers": [
+        {
+          "name": "@electron-forge/publisher-github",
+          "config": {
+            "repository": {
+              "owner": "mohsen12999",
+              "name": "remember_app",
+              "draft": false
+            }
+          }
+        }
+      ]
+    }
+  },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.1"
   }
