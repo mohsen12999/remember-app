@@ -53,6 +53,6 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: "${{ env.ZIPPED_FILE }}"
-          asset_name: "dist-${{ matrix-os }}-node${{ matrix.node-version }}.zip"
+          asset_name: "dist-${{ matrix.os }}-node${{ matrix.node-version }}.zip"
           tag: output-${{ github.ref }}
           overwrite: true
