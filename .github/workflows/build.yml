@@ -43,16 +43,14 @@ jobs:
 
       - name: Make ready to upload
         run: |
-          cd out/make
-          file_name=$(ls)
-          echo "ZIPPED_FILE=$file_name" >> $GITHUB_ENV
+          mkdir -p uploads
+          find out/make -type f -exec mv {} uploads/ \;
         shell: bash
 
       - name: Upload to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: "out/make/${{ env.ZIPPED_FILE }}"
-          asset_name: "dist-${{ matrix.os }}-node${{ matrix.node-version }}.zip"
-          tag: output-${{ github.ref }}
+          file: "uploads/*"
+          tag: startsWith(github.ref, 'refs/tags/') ?${{ github.ref }} : output-${{ github.ref }}
           overwrite: true
