@@ -32,10 +32,27 @@ jobs:
         run: npm install
 
       - name: build
+        # if: !startsWith(github.ref, 'refs/tags/')
         run: npm run make
+      #
+      # - name: publish
+      #   if: startsWith(github.ref, 'refs/tags/')
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   run: npm run publish
 
-      - name: publish
-        if: startsWith(github.ref, 'refs/tags/')
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run publish
+      - name: Make ready to upload
+        run: |
+          cd out/make
+          file_name=$(ls)
+          echo "ZIPPED_FILE=$file_name" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Upload to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: "${{ env.ZIPPED_FILE }}"
+          asset_name: "dist-${{ matrix-os }}-node${{ matrix.node-version }}.zip"
+          tag: output-${{ github.ref }}
+          overwrite: true
