@@ -55,6 +55,7 @@ jobs:
             TAG_NAME="output-${GITHUB_REF##*/}"
           fi
           echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+        shell: bash
 
       - name: Upload to release
         uses: svenstaro/upload-release-action@v2
