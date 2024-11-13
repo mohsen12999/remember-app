@@ -63,3 +63,4 @@ jobs:
           file: "uploads/*"
           tag: "${{ env.TAG_NAME }}"
           overwrite: true
+          file_glob: true
