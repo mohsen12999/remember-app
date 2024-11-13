@@ -47,10 +47,19 @@ jobs:
           find out/make -type f -exec mv {} uploads/ \;
         shell: bash
 
+      - name: Set Release Tag
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            TAG_NAME="${GITHUB_REF##*/}"  # Extract tag name
+          else
+            TAG_NAME="output-${GITHUB_REF##*/}"
+          fi
+          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+
       - name: Upload to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: "uploads/*"
-          tag: startsWith(github.ref, 'refs/tags/') ?${{ github.ref }} : output-${{ github.ref }}
+          tag: "${{ env.TAG_NAME }}"
           overwrite: true
