@@ -61,3 +61,4 @@ jobs:
             out/make/**/*.rpm
           tag: ${{ github.ref }}
           overwrite: true
+          file_glob: true
