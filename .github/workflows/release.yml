@@ -36,9 +36,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run publish
 
-      - name: Debug info
-        run: ls out/make/**/*
-
       # - name: Upload artifacts
       #   uses: LabhanshAgrawal/upload-artifact@v3
       #   with:
@@ -49,16 +46,17 @@ jobs:
       #       out/make/**/*.deb
       #       out/make/**/*.rpm
 
+      - name: Make ready to upload
+        run: |
+          mkdir -p uploads
+          find out/make -type f -exec mv {} uploads/ \;
+        shell: bash
+
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: |
-            out/make/**/*.zip
-            out/make/**/*.nupkg
-            out/make/**/*.exe
-            out/make/**/*.deb
-            out/make/**/*.rpm
+          file: "uploads/*"
           tag: ${{ github.ref }}
           overwrite: true
           file_glob: true
